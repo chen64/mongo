@@ -1,12 +1,17 @@
 <div class="jumbotron">
-    Newscrape
+    <h1 style="text-align: center;">Newscrape</h1>
 </div>
-<div class="row">
-    {{#each article}}
-    <div class="card" id = "{{this._id}}">
-        <div class="card-header">
-            <h1><a href="{{this.link}}">{{this.title}}</a></h1>
-            <button class=""
+<div class="container">
+    <div class="row">
+        {{#each articles}}
+        <div class="card" id="{{this._id}}">
+            <div class="card-header">
+                <h1><a href="{{this.link}}">{{this.title}}</a></h1>
+                <br>
+                <p>{{this.summary}}</p>
+            </div>
         </div>
+        {{/each}}
     </div>
 </div>
+
