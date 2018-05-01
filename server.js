@@ -28,11 +28,17 @@ app.get("/", function(req, res){
 app.get("/scrape", function(req, res) {
     request("http://www.nytimes.com/", function(error, response, html) {
     var $ = cheerio.load(html);
-    $("article.story").each(function(i, element) {
+    $("article").each(function(i, element) {
         var result = {};
-        result.title = $(this).children(".storty-heading").text();
-        result.link = $(this).children(".story-heading").attr("href");
-        result.summary = $(this).children("p.summary").text();
+        var title = $(element).children(".story-heading").text();
+        var link = $(element).children(".story-heading").children().attr("href");
+        var summary = $(element).children("p.summary").text();
+        // result.title = $(this).children("h2 a").text();
+        // result.link = $(this).children("h2 a").attr("href");
+        // result.summary = $(this).children("p").text();
+        result.title = title;
+        result.link = link;
+        result.summary = summary;
 
         db.Article.create(result)
         .then(function(dbArticle) {
