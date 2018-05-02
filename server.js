@@ -23,6 +23,7 @@ app.set("view engine", "handlebars");
 app.get("/", function(req, res){
     var hbsObject = {userData:"data"};
     res.render("index", hbsObject);
+    console.log(hbsObject)
 })
 
 app.get("/scrape", function(req, res) {
@@ -55,7 +56,9 @@ app.get("/scrape", function(req, res) {
 app.get("/articles", function(req, res) {
     db.Article.find({})
         .then(function(dbArticle) {
-            res.render("index", dbArticle);
+            var object = {articles: dbArticle}
+            res.render("index", object);
+            //res.json(dbArticle)
         })
         .catch(function(err){
             res.json(err);

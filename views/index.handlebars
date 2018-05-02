@@ -1,12 +1,18 @@
 <div class="jumbotron">
+    <button type='button' class='btn btn-primary'><a href="/articles">articles</a></button>
     <h1 style="text-align: center;">Newscrape</h1>
+    <button type='button' class='btn btn-primary'><a href="/scrape">Sscrape</a></button>
 </div>
 <div class="container">
     <div class="row">
+        <div id='note'></div>
         {{#each articles}}
-        <div class="card" id="{{this._id}}">
-            <div class="card-header">
-                <h1><a href="{{this.link}}">{{this.title}}</a></h1>
+        <div class="col-lg-12">
+            <div class="card" id="{{this._id}}">
+                <h2><a href="{{this.link}}">{{this.title}}</a></h2>
+                <button id='note'>Note</button>
+                <div id='notes'></div>
+                <button id='saveArt'>Save</button>
                 <br>
                 <p>{{this.summary}}</p>
             </div>

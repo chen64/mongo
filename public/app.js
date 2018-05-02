@@ -1,5 +1,5 @@
-$(document).on("click", "p", function() {
-    $("#note").empty();
+$('#note').on("click", function() {
+    $("#notes").empty();
     var thisId = $(this).attr("data-id");  
     $.ajax({
       method: "GET",
@@ -7,14 +7,14 @@ $(document).on("click", "p", function() {
     })
         .then(function(data) {
             console.log(data);
-            $("#note").append("<textarea id='bodyinput' name='body'></textarea>");
-            $("#note").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
+            $("#notes").append("<textarea id='bodyinput' name='body'></textarea>");
+            $("#notes").append("<button data-id='" + data._id + "' id='savenote'>Save Note</button>");
             if (data.note) {
                 $("#titleinput").val(data.note.title);
                 $("#bodyinput").val(data.note.body);
             }
       });
-  });
+});
   
 $(document).on("click", "#savenote", function() {
     var thisId = $(this).attr("data-id");
